@@ -1,9 +1,11 @@
-void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao){
-    int e = 0.05;//criação do criterio de parada
+#include <stdio.h>
+#include <math.h>
 
+void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao){
+    double e = 0.05;//criação do criterio de parada
     double next[m];//criando o vetor da proxima aproximacao
     double dis[m];//criando o medidor da distancia
-    int maior;//variavel para comparar com o criterio de parada
+    double maior = 1;//variavel para comparar com o criterio de parada
     int k = 0;
 
     for(int i; i < m; i++){//iniciando a aproximacao inicial com 0's
@@ -53,4 +55,23 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao)
         }
         k++;
     }
+}
+
+int main (void){
+
+    int m, iteracao;
+
+    printf("Digite o tamanho: ");
+    scanf("%d", &m);
+
+    //printf("Digite quantas iterações: ");
+    //scanf("%d", &iteracao);
+
+    double A[m][m], b[m];
+    double inicial[m];
+
+    jacobi(m, A, b, inicial, iteracao);
+
+    return 0;
+
 }

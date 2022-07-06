@@ -1,9 +1,12 @@
-void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao){
-    int e = 0.05;//criação do criterio de parada
+//Código do Jacobi para ser usado na prova
+#include <stdio.h>
+#include <math.h>
 
+void jacobi(int m, double A[m][m], double b[m], double inicial[m]){
+    double e = 0.0001;//criação do criterio de parada
     double next[m];//criando o vetor da proxima aproximacao
     double dis[m];//criando o medidor da distancia
-    int maior;//variavel para comparar com o criterio de parada
+    double maior = 1;//variavel para comparar com o criterio de parada
     int k = 0;
 
     for(int i; i < m; i++){//iniciando a aproximacao inicial com 0's
@@ -12,14 +15,25 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao)
    
     for (int i = 0; i < m; i++){
         for (int j = 0; j < m; j++){
-            printf("Digite os valores de A: \n");
-            scanf("%lf", &A[i][j]);
+            A[i][j] = 0;
         }  
     }
 
+    A[0][0] = -2.02;
+    A[0][1] = 1;
+
     for(int i = 0; i < m; i++){
-        printf("Digite os valores de b: \n");
-            scanf("%lf", &b[i]);
+        b[i] = 0;
+    }
+
+    b[0] = 1;
+    b[1] = 0;
+    b[2] = 1;
+
+    for(int i = 1; i < m; i++){
+        A[i][i-1] = 1;
+        A[i][i] = -2.02;
+        A[i][i+1] = 1;
     }
 
     while(maior > e){
@@ -32,7 +46,8 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao)
                 }
             }
             bi /= A[i][i];
-            printf("x_%d^(%d) = %.5lf\t", i + 1, k + 1, bi);
+            printf("x_%d^(%d) = %.5lf", i + 1, k + 1, bi);
+            printf("\n");
             next[i] = bi;
         }
 
@@ -53,4 +68,20 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m], int iteracao)
         }
         k++;
     }
+}
+
+int main (void){
+
+    int m;
+
+    printf("Digite o tamanho: ");
+    scanf("%d", &m);
+
+    double A[m][m], b[m];
+    double inicial[m];
+
+    jacobi(m, A, b, inicial);
+
+    return 0;
+
 }
