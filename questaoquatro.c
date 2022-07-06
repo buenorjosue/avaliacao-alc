@@ -11,8 +11,9 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m]){
     for(int i; i < m; i++){//iniciando a aproximacao inicial com 0's
         inicial[i] = 0;
     }
-   
-    for (int i = 0; i < m; i++){
+    
+    //definindo a matriz
+    for (int i = 0; i < m; i++){ 
         for (int j = 0; j < m; j++){
             A[i][j] = 0;
         }  
@@ -21,6 +22,7 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m]){
     A[0][0] = -2.02;
     A[0][1] = 1;
 
+    //definindo o b
     for(int i = 0; i < m; i++){
         b[i] = 0;
     }
@@ -45,12 +47,14 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m]){
                 }
             }
             bi /= A[i][i];
-            printf("x_%d^(%d) = %.5lf", i + 1, k + 1, bi);
+            printf("x_%d^(%d) = %.6lf", i + 1, k + 1, bi);
             printf("\n");
             next[i] = bi;
         }
 
         printf("\n");
+
+        //calculo da distancia
         for(int i = 0; i < m; i++){
             dis[i] = fabs(next[i] - inicial[i]);
             }
@@ -71,7 +75,7 @@ void jacobi(int m, double A[m][m], double b[m], double inicial[m]){
 
 void seidel(int m, double A[m][m], double b[m], double inicial[m]){
     double e = 0.0001;//criação do criterio de parada
-    double before[m];//criando o vetor da proxima aproximacao
+    double before[m];//criando o vetor da aproximação anterior
     double dis[m];//criando o medidor da distancia
     double maior = 1;//variavel para comparar com o criterio de parada
     int k = 0;
@@ -80,6 +84,7 @@ void seidel(int m, double A[m][m], double b[m], double inicial[m]){
         inicial[i] = 0;
     }
    
+   //definindo a matriz
     for (int i = 0; i < m; i++){
         for (int j = 0; j < m; j++){
             A[i][j] = 0;
@@ -89,6 +94,7 @@ void seidel(int m, double A[m][m], double b[m], double inicial[m]){
     A[0][0] = -2.02;
     A[0][1] = 1;
 
+    //definindo o b
     for(int i = 0; i < m; i++){
         b[i] = 0;
     }
@@ -117,11 +123,12 @@ void seidel(int m, double A[m][m], double b[m], double inicial[m]){
                 }
             }
             bi /= A[i][i];
-            printf("x_%d^(%d) = %.5lf", i + 1, k + 1, bi);
+            printf("x_%d^(%d) = %.6lf", i + 1, k + 1, bi);
             printf("\n");
             inicial[i] = bi;
         }
 
+        //calculando a distancia
         printf("\n");
         for(int i = 0; i < m; i++){
             dis[i] = fabs(inicial[i] - before[i]);
@@ -139,7 +146,7 @@ void seidel(int m, double A[m][m], double b[m], double inicial[m]){
 
 int main (void){
     int m = 30;//definindo o tamanho
-    int escolha;
+    int escolha;//variavel do switch
 
     double A[m][m], b[m];
     double inicial[m];

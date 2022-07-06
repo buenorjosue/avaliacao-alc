@@ -2,9 +2,9 @@
 
 void calculo(int m, int n, float A[m][n], float y[m], float x[n], float Ax[m]){
     for (int i = 0; i < m; i++){
-    for (int k = 0; k < n; k++){
-        printf("Digite os valores de A: \n");
-        scanf("%f", &A[i][k]);
+        for (int k = 0; k < n; k++){
+            printf("Digite os valores de A: \n");
+            scanf("%f", &A[i][k]);
     }  
    }
 
@@ -33,7 +33,7 @@ void calculo(int m, int n, float A[m][n], float y[m], float x[n], float Ax[m]){
     }
 
     for(int i = 0; i < m; i++){
-        printf("O vetor y eh: %.0f\n", y[i]);
+        printf("O vetor y eh: %.6f\n", y[i]);
     }
 }
 
